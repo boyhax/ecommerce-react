@@ -5,7 +5,7 @@ import logo from '@/images/logo-full.png';
 import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import {
-  Link, NavLink, useLocation
+  Link, NavLink, useHistory, useLocation, useParams
 } from 'react-router-dom';
 import UserAvatar from '@/views/account/components/UserAvatar';
 import BasketToggle from '../basket/BasketToggle';
@@ -17,6 +17,7 @@ import SearchBar from './SearchBar';
 const Navigation = () => {
   const navbar = useRef(null);
   const { pathname } = useLocation();
+  const admin_route = useHistory().location.pathname.includes('admin')
 
   const store = useSelector((state) => ({
     basketLength: state.basket.length,
@@ -53,10 +54,10 @@ const Navigation = () => {
     ROUTE.SIGNUP,
     ROUTE.FORGOT_PASSWORD
   ];
-
-  if (store.user && store.user.role === 'ADMIN') {
+  if (store.user && store.user.role === 'ADMIN' && admin_route) {
     return null;
-  } if (window.screen.width <= 800) {
+  } 
+  if (window.screen.width <= 800) {
     return (
       <MobileNavigation
         // eslint-disable-next-line react/jsx-props-no-spreading
