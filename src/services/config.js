@@ -7,5 +7,7 @@ const firebaseConfig = {
   messagingSenderId: import.meta.env.VITE_FIREBASE_MSG_SENDER_ID,
   appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
+// console.log(process.env.FIREBASE_API_KEY)
+console.log(import.meta.env.FIREBASE_API_KEY)
 
 export default firebaseConfig;
